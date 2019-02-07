@@ -1,0 +1,233 @@
+<!-- FontAwesome -->
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="--REMOVED--" crossorigin="anonymous"> -->
+
+<!-- <link href="https://consultancycompany.sharepoint.com/sites/CSA/IM/IT/JARGON/SiteAssets/main-jake/css/datepicker/bootstrap-datepicker.css" rel="stylesheet">
+<link href="https://consultancycompany.sharepoint.com/sites/CSA/IM/IT/JARGON/SiteAssets/main-jake/css/datepicker/bootstrap-datepicker3.css" rel="stylesheet">
+<link href="https://consultancycompany.sharepoint.com/sites/CSA/IM/IT/JARGON/SiteAssets/main-jake/css/select2/select2.min.css" rel="stylesheet"> -->
+<link rel="stylesheet" type="text/css" href="https://consultancycompany.sharepoint.com/sites/CSA/IM/IT/JARGON/SiteAssets/main-jake/css/bootstrap/bootstrap.css">
+
+<!-- Added cool materialized CDN for a cool pagination looking effect, delete later, aesthetics for now only --><!-- Addeded Bootstrap 3 CSS 10/8/18-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+<script src="https://consultancycompany.sharepoint.com/sites/CSA/IM/IT/JARGON/SiteAssets/main-jake/FontAwesome/fontawesome-all.min.js" type="text/javascript"></script>
+
+<style>
+    /* body {
+        padding-top: 15px;
+        padding-bottom: 10px;
+        height: 900px;
+        background-color: #fff!important;
+    } */
+    h4 {
+            font-size: 15px!important;
+        }
+
+    h5 {
+        font-size: 12px!important;
+    }
+
+    h5, h4 {
+        color: #D3D3D3!important;
+        font-weight: bold;
+    }
+
+    body {
+        height: 100%!important;
+    }
+
+    .title, .subtitle {
+        text-align: center;
+    }
+
+    .background-container, .fluid-container {
+        color: #010001!important;
+        background: linear-gradient(to left, #8360c3, #2ebf91)!important;
+    }
+    
+    .nav > li {
+        z-index: 3;
+    }
+
+    .nav > li > a {
+        padding-top: 3px!important;
+        padding-bottom: 3px!important;
+        color: #D3D3D3!important;
+        z-index: 3;
+    }
+
+    .nav > li > a:hover {
+        padding-top: 3px!important;
+        padding-bottom: 3px!important;
+        color: #8F1228!important;
+    }
+
+    .nav > li > .active { /* NOT WORKING 11/29, if works change main to z-index 2, or to white above the actual tab */
+        padding-top: 3px!important;
+        padding-bottom: 3px!important;
+        color: blue!important;
+        z-index: 2;
+    }
+
+    .nav-tabs > li.active {
+        z-index: 3;
+        opacity: 1;
+        color: #8F1228;
+    }
+
+    .nav-tabs > li.active > a {
+        z-index: 3;
+        opacity: 1;
+        color: #8F1228!important;
+    }
+    
+    .tab-content > .active {
+        z-index: 3;
+        opacity: 1!important;
+        color: #8F1228!important;
+    }
+
+    .chart_div {
+        padding-bottom: 20px!important;
+        box-shadow: 0, 8px, 16px, 0 rgba(0,0,0,0.2), 
+            0, 6px, 20px, 0 rgba(0,0,0,0.19)!important; 
+    }
+
+    .background-container {
+        /*margin: 20px!important;*/
+        padding: 2%!important;
+    }
+
+    .overall-metrics-container {
+        margin-top: 10%!important;
+    }
+
+    #blame_photo {
+        width: 20px;
+        width: 20px;
+    }
+
+</style>
+
+<head>
+</head>
+
+<body>
+    <div class="spbootstrap">
+        <div class="container-fluid">
+            <div class="container">
+                
+                <p>Find All the <i>initiatives</i> for this Sprint and return the top intitiative titles for intitiatives column.</p>
+               
+                <hr>
+                <ul id="metrics-list"></ul>
+                
+                <!-- <input type="button" value="Generate a table." onclick="generate_table()"> -->
+                <input type="button" value="Generate a table.">
+
+                <br>
+
+                </br> 
+                
+
+                 <!--Contains All charts on the page -->
+                <div class="overall-chart col-md-12 background-container"> <!-- col-md-12 -->
+                    <div class="col-md-8"> <!-- col-md-8 containers 3 charts 2 top && 1 bottom -->
+                        <!--Contains Top 10 initiatives && Top Epic by Story Owner -->
+                        <div class="top-row-container col-md-12">  <!-- col-md-12 -->
+                            <div class="col-md-6 chart_div"><!-- col-md-6 float left?-->
+                                <h4 class="initiatives-chart-title title">Top 10 Initiatives</h4> <!-- all 'title' class should be target to same size && centered -->
+                                <div id="top_initiative_chart"><!-- CHART GOES HERE --></div>
+                            </div>
+                            <div class="col-md-6 chart_div"><!-- col-md-6 float left?-->
+                                <h4 class="epic-story-chart-title title">Top 3 Epics by Story Owner</h4> <!-- all 'title' class should be target to same size && centered -->
+                                <div id="epic_story_chart_div"><!-- CHART GOES HERE --></div>
+                            </div>
+                        </div> 
+        
+
+                        <!--Contains Top 3 Epic By Intiative -->
+                        <div class="bottom-row-container col-md-12"><!-- col-md-12 -->
+                            <h4 class="epics-chart-title title">Top 3 Epics By Initiative</h4> <!-- all 'title' class should be target to same size && centered -->
+                            <br/>
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a data-toggle="tab" href="#epics_adam_div">Adam</a></li>
+                                <li><a data-toggle="tab" href="#epics_ac_div">AC</a></li>
+                                <li><a data-toggle="tab" href="#epics_kc_div">KC</a></li>
+                                <li><a data-toggle="tab" href="#epics_nicki_div">Nicki</a></li>
+                                <li><a data-toggle="tab" href="#epics_jake_div">Jake</a></li>
+                            </ul>
+
+                            <br/>
+                            <div class="tab-content">
+                                <!-- Place all charts within this bootstrap -->
+                                <div class="tab-pane in active epics-chart-adam-container chart_div"> <!-- Adams-->
+                                    <div id="epics_adam_div"><!-- CHART GOES HERE --></div>
+                                </div>
+                                <div class="tab-pane fade epics-chart-ac-container chart_div"> <!-- AC -->
+                                    <div id="epics_ac_div"><!-- CHART GOES HERE --></div>
+                                </div>
+                                <div class="tab-pane fade epics-chart-kc-container chart_div"> <!-- KC -->
+                                    <div id="epics_kc_div"><!-- CHART GOES HERE --></div>
+                                </div>
+                                <div class="tab-pane fade epics-chart-nicki-container chart_div"> <!-- Nicki -->
+                                    <div id="epics_nicki_div"><!-- CHART GOES HERE --></div>
+                                </div>
+                                <div class="tab-pane fade epics-chart-jake-container chart_div"> <!-- Jake-->
+                                    <div id="epics_chart_jake_div"><!-- CHART GOES HERE --></div>
+                                </div>
+                            </div>
+                            
+                        </div>                      
+                    </div>
+                    
+                    <!--Contains Metrics charts -->
+                    <div class="col-md-4"> <!-- col-md-4-->
+                        <div class="overall-metrics-container col-md-12"> <!-- col-md-12 overall-metrics-container --> 
+                            <!--<h4 class="metrics-charts-title title">Metrics</h4>-->
+                            <div class="top-metrics-row col-md-12"><!--2 charts col-md-12 -->
+                                <div class="unique-customer-chart metric-charts chart_div col-md-6"> <!-- unique-chart float left col-md-6 --> 
+                                    <h5 class="unique_chart_title sub-title">Unique Customers</h5>
+                                    <div id="unique_chart_div"><!-- CHART GOES HERE --></div>
+                                </div> 
+
+                                <div class="planned-adhoc-chart metric-charts col-md-6">  <!-- planned-adhoc float right col-md-6 -->
+                                    <h5 class="planned-adhoc-chart-title sub-title">Planned Vs. Ad-hoc</h5>
+                                    <div class="chart_div" id="planned_adhoc_chart_div"><!-- CHART GOES HERE --></div>
+                                </div> 
+                            </div> 
+
+                            <div class="bottom-metrics-row col-md-12"><!-- 2 charts col-md-12 -->
+                                <div class="story-type-chart metric-charts col-md-6"> <!-- col-md-6 story-type float-left -->
+                                    <h5 class="story-type-chart-title sub-title">Story Type</h5>
+                                    <div class="chart_div" id="story_type_chart_div"><!-- CHART GOES HERE --></div>
+                                </div> 
+
+                                <div class="completed_total_chart metric-charts col-md-6"> <!-- col-md-6 completed-total float-right -->
+                                    <h5 class="completed-total-chart-title sub-title">Completed Total Metrics</h5>
+                                    <div  class="chart_div" id="completed_total_chart_div"><!-- CHART GOES HERE --></div>
+                                </div> 
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+
+                <br>
+
+               
+             
+<!-- Added jQuery script to retrieve Monday.com API data below -->
+<script type="text/javascript" src="https://consultancycompany.sharepoint.com/sites/CSA/IM/IT/JARGON/SiteAssets/main-jake/js/jquery/jquery-3.2.1.min.js" ></script>
+
+<script type="text/javascript" src="https://consultancycompany.sharepoint.com/sites/CSA/IM/IT/JARGON/SiteAssets/main-jake/js/jquery.SPServices.min.js"></script>
+<script type="text/javascript" src="https://consultancycompany.sharepoint.com/sites/CSA/IM/IT/JARGON/SiteAssets/main-jake/js/jCSA.js"></script>
+<script type="text/javascript" src="https://consultancycompany.sharepoint.com/sites/CSA/IM/IT/JARGON/SiteAssets/main-jake/js/select2/select2.full.min.js"</script></script>
+<script type="text/javascript" src="https://consultancycompany.sharepoint.com/sites/CSA/IM/IT/JARGON/SiteAssets/main-jake/js/tether/tether.js" ></script>
+<script type="text/javascript" src="https://consultancycompany.sharepoint.com/sites/CSA/IM/IT/JARGON/SiteAssets/main-jake/js/bootstrap/bootstrap.js" ></script>
+<script type="text/javascript" src="https://consultancycompany.sharepoint.com/sites/CSA/IM/IT/JARGON/SiteAssets/main-jake/js/datepicker/bootstrap-datepicker.js" ></script>
+<script src='https://cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js'></script>
+
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+<script type="text/javascript" data-app-id="--REMOVED--" src="https://consultancycompany.sharepoint.com/sites/CSA/IM/IT/JARGON/SiteAssets/main-jake/js/yammer/platform_js_sdk.js"></script>
+
