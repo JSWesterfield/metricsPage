@@ -1,0 +1,117 @@
+.jumbotron {
+    color:white !important;
+    background-color: transparent!important;
+    margin-bottom: 0px!important;
+    padding-bottom: 3%!important;
+    margin-left: 7%;
+}
+
+li.list-group-item {    /* add small margin around li icon and text */
+    font-size: 20px;
+    margin: 2px;
+    float: right;
+    text-align: left;
+    padding: 5px;
+}
+
+.ms-core-listMenu-core {
+    display: none;
+}
+
+.status-icon {
+    height: 70px;
+    width: 70px;
+    color: #9A112E;
+    float: left!important;
+    margin-top:3%;
+}
+
+.li-text-landing {
+    margin-top: 5%;
+}
+
+i, li.list-group-item, lead, display-4 { /* icon & li text solid white */
+    z-index: 4;
+}
+
+.list-row.active, .list-row.hover {
+    color: white!important;
+}
+
+.container-fluid {
+   background-color: #fff;
+    z-index: 1;
+    width: 100%;
+}
+
+.list-div {
+    margin-left: 3%;
+    margin-right: 5%;
+}
+
+li.list-group-item {
+    border-radius: 10px;
+    width: 100%;
+    height: 140px;
+    margin-top: 2%;
+    z-index: 3; /*Above page background but below li icon/text */
+    opacity: 0.5;
+    filter: alpha(opacity=50); /* For IE8 and earlier */
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+li.list-group-item:hover {
+    color: #9A112E;
+    opacity: 0.4;
+}
+    
+.show-lists-btn {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    float: right;
+}
+
+.button-div {
+    margin: 5px;
+    padding: 5px;
+}
+
+.active {
+    opacity: 0.3;
+}
+
+.list-text {
+    z-index: 5;   /* Wont show my text on a different z-index than the list div*/
+}
+
+#sideNavBox {  
+    display: none;  
+}  
+/* adjust position of content on site page */  
+
+#contentBox {  
+    margin-left: 20px!important;  
+}
+
+@media screen and (max-width: 1440px) and (min-width: 1081px) {
+    .status-icon {
+        color: #9A112E;
+        float: left!important;
+        margin-top:2%!important;
+    }
+
+    .li-text-landing {
+        margin-top: 4%!important;
+    }
+}
+
+@media screen and (max-width: 1920px) and (min-width: 1540px) {
+    .status-icon {
+        color: #9A112E;
+        float: left!important;
+        margin-top:1%!important;
+    }
+
+    .li-text-landing {
+        margin-top: 3%!important;
+    }
+}
